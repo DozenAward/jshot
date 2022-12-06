@@ -4,12 +4,19 @@ import numpy as np
 from operator import itemgetter
 
 class draw: 
-  def __init__(self,getBorderSize):
+  def __init__(self,getBorderSize,getInput):
     self.getBorderSize=getBorderSize
+    self.getInput= getInput
 
   def getImage(imagePath):
     print("image "+imagePath)
     
+  def getInput():
+    user_input = input('Do you like pizza (yes/no): ')
+    if user_input.lower() == 'y':
+      return True
+    else:
+      return False
 
   def getBorderSize(person):
     listPoint=[]
@@ -98,17 +105,21 @@ class draw:
             cv2.circle(image, (width, height), lineType, white,lineType)
             cv2.putText(image,text, CenterCoordinates,font, fontScale, color, thickness, cv2.LINE_AA)
       # break
-    
+    # confirm
+
     # Showing the image
     cv2.imshow('image', image)
+    # input_check = draw.getInput()
+    # print("input_check ",input_check)
     cv2.imwrite('./output/'+fileName, image)
     print('Done')
-  
       # print('Done')
   
 
     cv2.waitKey(0)
     cv2.destroyAllWindows()
+    input_check = draw.getInput()
+    print("input_check ",input_check)
 
 
   #main test
